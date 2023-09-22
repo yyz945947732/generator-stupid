@@ -87,7 +87,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const folders = ["src", "test", "types"];
+    const folders = ["src", "test", "types", ".github"];
     const files = [
       "README.md",
       "package.json",
@@ -95,6 +95,7 @@ module.exports = class extends Generator {
       "tsup.config.ts",
       "tsconfig.json",
       "biome.json",
+      "vitest.config.ts",
       ".gitignore",
       ".editorconfig"
     ];

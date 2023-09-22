@@ -24,12 +24,14 @@ describe("generator-stupid:app", () => {
       "tsup.config.ts",
       "tsconfig.json",
       "biome.json",
+      "vitest.config.ts",
       ".gitignore",
       ".editorconfig",
       "src/index.ts",
       "src/index.ts",
       "types/index.d.ts",
-      "test/index.test.ts"
+      "test/index.test.ts",
+      ".github/workflows/cov.yml"
     ];
     assert.file(files);
   });

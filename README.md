@@ -30,6 +30,9 @@ Scaffolds out a complete generator directory structure for you:
 
 ```text
 .
+├── .github/
+│    └── workflows/
+│         └── cov.yml
 ├── src/
 │    └── index.ts
 ├── test/
@@ -43,7 +46,8 @@ Scaffolds out a complete generator directory structure for you:
 ├── package.json
 ├── README.md
 ├── tsconfig.json
-└── tsup.config.ts
+├── tsup.config.ts
+└── vitest.config.ts
 
 ```
 
