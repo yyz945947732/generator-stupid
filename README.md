@@ -48,7 +48,6 @@ Scaffolds out a complete generator directory structure for you:
 ├── tsconfig.json
 ├── tsup.config.ts
 └── vitest.config.ts
-
 ```
 
 ## LICENSE
