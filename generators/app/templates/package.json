@@ -1,0 +1,34 @@
+{
+  "name": "<%- projectName %>",
+  "version": "1.0.0",
+  "description": "<%- description %>",
+  "homepage": "https://github.com/<%- username %>/<%- projectName %>",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "vitest",
+    "lint": "biome check --apply-unsafe ./src && biome format --write ./src",
+    "build": "tsup --config tsup.config.ts"
+  },
+  "type": "module",
+  "author": "<%- username %> <<%- email %>>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/<%- username %>/<%- projectName %>/issues",
+    "email": "<%- email %>"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/<%- username %>/<%- projectName %>.git"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.1.2",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.4"
+  }
+}
