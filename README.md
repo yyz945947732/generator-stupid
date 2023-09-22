@@ -1,6 +1,14 @@
 # generator-stupid
->
-> generator project with tsup、biome、vitest
+
+> generating a project with tsup, biome, vitest
+
+## Features
+
+generating a tiny project use:
+
+- 🚀 [vitest](https://vitest.dev/) for test.
+- 🦌 [biome](https://biomejs.dev/) for format, lint.
+- 📦 [tsup](https://tsup.egoist.dev/) for build.
 
 ## Installation
 
