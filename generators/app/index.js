@@ -88,7 +88,7 @@ module.exports = class extends Generator {
       )
     );
     this.fs.copy(
-      this.templatePath("gitignore", this.deleteDestination(".gitignore"))
+      this.templatePath("gitignore", this.destinationPath(".gitignore"))
     );
     if (this.props.coverage) {
       this.fs.copy(
