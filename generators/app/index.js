@@ -1,9 +1,11 @@
 "use strict";
 const Generator = require("yeoman-generator");
+const path = require("path");
 const askName = require("inquirer-npm-name");
 const _ = require("lodash");
 const chalk = require("chalk");
 const yosay = require("yosay");
+const mkdirp = require("mkdirp");
 
 module.exports = class extends Generator {
   initializing() {
@@ -67,6 +69,14 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    if (path.basename(this.destinationPath()) !== this.props.projectName) {
+      this.log(
+        `Your generator must be inside a folder named ${this.props.projectName}\nI'll automatically create this folder.`
+      );
+      mkdirp.sync(this.props.projectName);
+      this.destinationRoot(this.destinationPath(this.props.projectName));
+    }
+
     const folders = ["src", "test", "types"];
     const files = [
       "README.md",
@@ -88,8 +98,10 @@ module.exports = class extends Generator {
       )
     );
     this.fs.copy(
-      this.templatePath("gitignore", this.destinationPath(".gitignore"))
+      this.templatePath("gitignore"),
+      this.destinationPath(".gitignore")
     );
+
     if (this.props.coverage) {
       this.fs.copy(
         this.templatePath(".github"),
@@ -99,7 +111,8 @@ module.exports = class extends Generator {
         this.templatePath("vitest.config.ts"),
         this.destinationPath("vitest.config.ts")
       );
-      this.packageJson.merge({
+      const pkg = this.fs.readJSON(this.destinationPath("package.json"), {});
+      _.merge(pkg, {
         scripts: {
           "test:cov": "vitest run --coverage"
         },
@@ -107,6 +120,7 @@ module.exports = class extends Generator {
           "@vitest/coverage-istanbul": "^0.34.4"
         }
       });
+      this.fs.writeJSON(this.destinationPath("package.json"), pkg);
     }
   }
 };
