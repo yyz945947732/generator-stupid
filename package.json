@@ -5,8 +5,7 @@
   "homepage": "https://github.com/yyz945947732/generator-stupid",
   "author": "yyz945947732 <945947732@qq.com>",
   "files": [
-    "generators",
-    "generators/.gitignore"
+    "generators"
   ],
   "main": "generators/index.js",
   "keywords": [

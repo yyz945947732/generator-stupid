@@ -1,33 +1,9 @@
 "use strict";
 const Generator = require("yeoman-generator");
-const path = require("path");
 const askName = require("inquirer-npm-name");
 const _ = require("lodash");
 const chalk = require("chalk");
 const yosay = require("yosay");
-
-function parseScopedName(name) {
-  const nameFragments = name.split("/");
-  const parseResult = {
-    scopeName: "",
-    localName: name
-  };
-
-  if (nameFragments.length > 1) {
-    parseResult.scopeName = nameFragments[0];
-    parseResult.localName = nameFragments[1];
-  }
-
-  return parseResult;
-}
-
-function makeGeneratorName(name) {
-  const parsedName = parseScopedName(name);
-  name = parsedName.localName;
-  name = _.kebabCase(name);
-  name = name.indexOf("generator-") === 0 ? name : "generator-" + name;
-  return parsedName.scopeName ? `${parsedName.scopeName}/${name}` : name;
-}
 
 module.exports = class extends Generator {
   initializing() {
@@ -35,7 +11,8 @@ module.exports = class extends Generator {
       projectName: "",
       description: "",
       username: "",
-      email: ""
+      email: "",
+      coverage: true
     };
   }
 
@@ -48,8 +25,7 @@ module.exports = class extends Generator {
       {
         name: "projectName",
         message: "Your project name",
-        default: makeGeneratorName(path.basename(process.cwd())),
-        filter: makeGeneratorName
+        default: "tiny-project"
       },
       this
     )
@@ -70,15 +46,19 @@ module.exports = class extends Generator {
         name: "username",
         message: "Author's Name",
         when: !this.props.username,
-        default: this.user.git.name(),
-        store: true
+        default: this.user.git.name()
       },
       {
         name: "email",
         message: "Author's Email",
         when: !this.props.email,
-        default: this.user.git.email(),
-        store: true
+        default: this.user.git.email()
+      },
+      {
+        name: "coverage",
+        message: "Use test coverage?",
+        type: "confirm",
+        default: true
       }
     ];
     return this.prompt(prompts).then(props => {
@@ -87,7 +67,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const folders = ["src", "test", "types", ".github"];
+    const folders = ["src", "test", "types"];
     const files = [
       "README.md",
       "package.json",
@@ -95,8 +75,6 @@ module.exports = class extends Generator {
       "tsup.config.ts",
       "tsconfig.json",
       "biome.json",
-      "vitest.config.ts",
-      ".gitignore",
       ".editorconfig"
     ];
     folders.forEach(folder =>
@@ -109,5 +87,26 @@ module.exports = class extends Generator {
         this.props
       )
     );
+    this.fs.copy(
+      this.templatePath("gitignore", this.deleteDestination(".gitignore"))
+    );
+    if (this.props.coverage) {
+      this.fs.copy(
+        this.templatePath(".github"),
+        this.destinationPath(".github")
+      );
+      this.fs.copy(
+        this.templatePath("vitest.config.ts"),
+        this.destinationPath("vitest.config.ts")
+      );
+      this.packageJson.merge({
+        scripts: {
+          "test:cov": "vitest run --coverage"
+        },
+        devDependencies: {
+          "@vitest/coverage-istanbul": "^0.34.4"
+        }
+      });
+    }
   }
 };

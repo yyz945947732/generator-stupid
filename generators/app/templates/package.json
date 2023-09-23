@@ -8,7 +8,6 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "vitest",
-    "test:cov": "vitest run --coverage",
     "lint": "biome check --apply-unsafe ./src && biome format --write ./src",
     "build": "tsup --config tsup.config.ts"
   },
@@ -30,7 +29,6 @@
     "@biomejs/biome": "^1.1.2",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
-    "@vitest/coverage-istanbul": "^0.34.4",
     "vitest": "^0.34.4"
   }
 }

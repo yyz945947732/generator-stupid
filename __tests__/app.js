@@ -9,7 +9,8 @@ describe("generator-stupid:app", () => {
       projectName: "generator-stupid",
       description: "generator project with tsup、biome、vitest",
       username: "yyz945947732",
-      email: "945947732@qq.com"
+      email: "945947732@qq.com",
+      coverage: true
     };
     return helpers
       .run(path.join(__dirname, "../generators/app"))
