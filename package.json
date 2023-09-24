@@ -1,6 +1,6 @@
 {
   "name": "generator-stupid",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "generating a project with tsup, biome, vitest",
   "homepage": "https://github.com/yyz945947732/generator-stupid",
   "author": "yyz945947732 <945947732@qq.com>",
