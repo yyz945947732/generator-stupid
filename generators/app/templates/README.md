@@ -36,4 +36,8 @@ npm install --save <%= projectName %>
 
 ## LICENSE
 
-[MIT](https://github.com/yyz945947732/cnname/blob/master/LICENSE)
+[MIT](https://github.com/<%= username %>/<%= projectName %>/blob/master/LICENSE)
+
+---
+
+This project is created using [generator-stupid](https://github.com/yyz945947732/generator-stupid).
