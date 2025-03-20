@@ -117,7 +117,7 @@ module.exports = class extends Generator {
           "test:cov": "vitest run --coverage"
         },
         devDependencies: {
-          "@vitest/coverage-istanbul": "^0.34.4"
+          "@vitest/coverage-istanbul": "^3.0.9"
         }
       });
       this.fs.writeJSON(this.destinationPath("package.json"), pkg);

@@ -26,9 +26,9 @@
     "url": "git+https://github.com/<%- username %>/<%- projectName %>.git"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.1.2",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.4"
+    "@biomejs/biome": "^1.9.4",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
   }
 }
