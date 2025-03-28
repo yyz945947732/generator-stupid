@@ -80,7 +80,8 @@
   },
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
